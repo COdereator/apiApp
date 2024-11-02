@@ -1,0 +1,69 @@
+
+<div class="container my-4">
+    <div class="row">
+        <div class="col-8">
+            <div class="card">
+                <div class="card-header bg-secondary text-white">
+                    Department List
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr class="table-primary">
+                                <th>Sr No</th>
+                                <th>Name</th>
+                                <th>Logo</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (dept of deptList; track $index) {
+                            <tr class="table-warning">
+                                <td>{{ $index+1 }}</td>
+                                <td>{{ dept.departmentName }}</td>
+                                <td>{{ dept.departmentLogo }}</td>
+                                <td>
+                                    <button class="btn btn-primary me-3" (click)="onEdit(dept)">Edit</button>
+                                    <button class="btn btn-danger" (click)="onDelete(dept.departmentId)">Delete</button>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>  
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header bg-secondary text-white">
+                    New Department
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 my-2">
+                            <label for="">Department Name</label>
+                            <input type="text" [(ngModel)]="deptObj.departmentName" class="form-control my-1" placeholder="Enter Name">
+                        </div>
+                        <div class="col-12 my-2">
+                            <label for="">Department Logo</label>
+                            <input type="text" [(ngModel)]="deptObj.departmentLogo" class="form-control my-1" placeholder="Enter Your Url">
+                        </div>
+                    </div> 
+                    <div class="row my-2">
+                        <div class="col-6 text-center">
+                            <div class="btn btn-secondary">Reset</div>
+                        </div>
+                        <div class="col-6 text-center">
+                            @if(deptObj.departmentId == 0){
+                                <div class="btn btn-success" (click)="onSave()">Save</div>
+                            }
+                            @else {
+                                <div class="btn btn-warning" (click)="onUpdate()">Update</div>
+                            }
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
